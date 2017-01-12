@@ -1,0 +1,3 @@
+#Ignore the external libraries.
+ext/lwip
+ext/fatfs
