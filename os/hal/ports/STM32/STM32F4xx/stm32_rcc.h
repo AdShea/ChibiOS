@@ -451,7 +451,7 @@
  *
  * @api
  */
-#define rccEnableCRC(lp) rccEnableAHB(RCC_AHB1ENR_CRCEN, lp)
+#define rccEnableCRC(lp) rccEnableAHB1(RCC_AHB1ENR_CRCEN, lp)
 
 /**
  * @brief   Disables the CRC peripheral clock.
@@ -461,14 +461,14 @@
  *
  * @api
  */
-#define rccDisableCRC(lp) rccDisableAHB(RCC_AHB1ENR_CRCEN, lp)
+#define rccDisableCRC(lp) rccDisableAHB1(RCC_AHB1ENR_CRCEN, lp)
 
 /**
  * @brief   Resets the CRC peripheral.
  *
  * @api
  */
-#define rccResetCRC() rccResetAHB(RCC_AHB1RSTR_CRCRST)
+#define rccResetCRC() rccResetAHB1(RCC_AHB1RSTR_CRCRST)
 /** @} */
 
 /**
