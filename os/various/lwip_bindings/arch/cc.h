@@ -52,6 +52,7 @@
 #define __CC_H__
 
 #include <hal.h>
+#include <stdlib.h>
 
 typedef uint8_t         u8_t;
 typedef int8_t          s8_t;
@@ -71,6 +72,8 @@ typedef uint32_t        mem_ptr_t;
 #ifndef BYTE_ORDER
 #define BYTE_ORDER LITTLE_ENDIAN
 #endif
+
+#define LWIP_RAND() ((uint32_t) rand())
 
 #define LWIP_PROVIDE_ERRNO
 
