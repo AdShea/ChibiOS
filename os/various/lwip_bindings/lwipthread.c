@@ -101,7 +101,7 @@ static void low_level_init(struct netif *netif) {
 
   /* device capabilities */
   /* don't set NETIF_FLAG_ETHARP if this device is not an Ethernet one */
-  netif->flags = NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP | NETIF_FLAG_LINK_UP;
+  netif->flags = NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP | NETIF_FLAG_LINK_UP | NETIF_FLAG_IGMP;
 
   /* Do whatever else is needed to initialize interface. */
 }
@@ -258,6 +258,7 @@ static THD_FUNCTION(lwip_thread, p) {
 
   netif_set_default(&thisif);
   netif_set_up(&thisif);
+  igmp_init();
 
   /* Setup event sources.*/
   evtObjectInit(&evt, LWIP_LINK_POLL_INTERVAL);
@@ -280,6 +281,9 @@ static THD_FUNCTION(lwip_thread, p) {
                                      &thisif, 0);
 #if LWIP_DHCP
           dhcp_start(&thisif);
+#endif
+#if LWIP_IGMP
+	  tcpip_callback_with_block((tcpip_callback_fn) igmp_start, &thisif, 0);
 #endif
         }
         else {
