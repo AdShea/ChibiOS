@@ -258,7 +258,9 @@ static THD_FUNCTION(lwip_thread, p) {
 
   netif_set_default(&thisif);
   netif_set_up(&thisif);
+#if LWIP_IGMP
   igmp_init();
+#endif
 
   /* Setup event sources.*/
   evtObjectInit(&evt, LWIP_LINK_POLL_INTERVAL);
