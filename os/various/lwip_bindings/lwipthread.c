@@ -314,6 +314,7 @@ static THD_FUNCTION(lwip_thread, p) {
           if (thisif.input(p, &thisif) == ERR_OK)
             break;
           LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_input: IP input error\n"));
+	  /* FALLTHROUGH */
         default:
           pbuf_free(p);
         }
