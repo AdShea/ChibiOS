@@ -231,6 +231,10 @@ static THD_FUNCTION(lwip_thread, p) {
   /* Initializes the thing.*/
   tcpip_init(NULL, NULL);
 
+#if LWIP_STATS
+  stats_init();
+#endif
+
   /* TCP/IP parameters, runtime or compile time.*/
   if (p) {
     struct lwipthread_opts *opts = p;
