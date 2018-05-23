@@ -289,7 +289,7 @@ static THD_FUNCTION(lwip_thread, p) {
           dhcp_start(&thisif);
 #endif
 #if LWIP_IGMP
-	  tcpip_callback_with_block((tcpip_callback_fn) igmp_start, &thisif, 0);
+	  igmp_start(&thisif);
 #endif
         }
         else {
@@ -297,6 +297,9 @@ static THD_FUNCTION(lwip_thread, p) {
                                      &thisif, 0);
 #if LWIP_DHCP
           dhcp_stop(&thisif);
+#endif
+#if LWIP_IGMP
+	  igmp_stop(&thisif);
 #endif
         }
       }

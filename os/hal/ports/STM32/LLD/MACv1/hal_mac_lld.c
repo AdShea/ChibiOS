@@ -333,7 +333,7 @@ void mac_lld_start(MACDriver *macp) {
 #endif
 
   /* MAC configuration.*/
-  ETH->MACFFR    = 0;
+  ETH->MACFFR    = ETH_MACFFR_PAM;
   ETH->MACFCR    = 0;
   ETH->MACVLANTR = 0;
 

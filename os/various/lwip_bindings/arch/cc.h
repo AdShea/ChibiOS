@@ -53,7 +53,7 @@
 
 #include <hal.h>
 #include <stdlib.h>
-#if LWIP_STATS
+#if LWIP_STATS || LWIP_DEBUG
 #include <lwipsupport.h>
 #endif
 
@@ -67,7 +67,11 @@ typedef uint32_t        mem_ptr_t;
 
 #define PACK_STRUCT_STRUCT __attribute__((packed))
 
+#if LWIP_STATS || LWIP_DEBUG
 #define LWIP_PLATFORM_DIAG(x) do { halLwipDiag x; } while(0)
+#elif
+#define LWIP_PLATFORM_DIAG(x)
+#endif
 
 #define LWIP_PLATFORM_ASSERT(x) {                                       \
   osalSysHalt(x);                                                          \
